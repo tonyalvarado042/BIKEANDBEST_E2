@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bike &amp; Bed Arenal — Invierte en el Resort Ciclista de Latinoamérica</title>
+  <meta name="description" content="Invierte en el primer resort de ciclismo y bienestar en La Fortuna, Costa Rica. TIR 13–17%. Etapa 2 abierta, solo 20 cupos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --gold:#C9A84C;--gold-light:#E2C97E;--gold-subtle:rgba(201,168,76,.12);
+      --dark:#080808;--dark2:#0f0f0f;--dark3:#141414;--card:#1a1a1a;
+      --text:#f0f0f0;--muted:#888;--dim:#444;--border:rgba(201,168,76,.18);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;line-height:1.6}
+    h1,h2,h3,h4{font-family:'Playfair Display',serif;line-height:1.15}
+    .gold{color:var(--gold)} .italic{font-style:italic}
+    a{text-decoration:none}
+    img{display:block;max-width:100%}
+
+    /* BUTTONS */
+    .btn{display:inline-block;font-family:'Inter',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;padding:15px 36px;transition:all .35s ease;cursor:pointer;border:none;border-radius:2px;position:relative;overflow:hidden}
+    .btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.12);opacity:0;transition:opacity .3s}
+    .btn:hover::after{opacity:1}
+    .btn-gold{background:linear-gradient(135deg,var(--gold) 0%,#B8942A 100%);color:#000;box-shadow:0 4px 18px rgba(201,168,76,.25)}
+    .btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(201,168,76,.5)}
+    .btn-outline{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.35);border-radius:2px}
+    .btn-outline:hover{border-color:var(--gold);color:var(--gold);box-shadow:0 0 20px rgba(201,168,76,.15)}
+    .btn-lg{padding:20px 60px;font-size:.9rem;border-radius:2px}
+
+    /* UTILS */
+    .label{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+    .gold-line{width:40px;height:1px;background:var(--gold);margin:18px 0}
+    .gold-line.c{margin:18px auto}
+
+    /* REVEAL */
+    .r{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
+    .r.on{opacity:1;transform:none}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+    /* NAV */
+    #nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:22px 40px;transition:background .4s,padding .4s}
+    #nav.s{background:rgba(8,8,8,.96);backdrop-filter:blur(20px);padding:14px 40px;border-bottom:1px solid var(--border)}
+    .nav-in{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo img{height:46px;filter:brightness(0) invert(1);transition:opacity .3s}
+    .nav-logo img:hover{opacity:.8}
+    .nav-links{display:flex;gap:36px}
+    .nav-links a{color:rgba(255,255,255,.7);font-size:.8rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
+    .nav-links a:hover{color:var(--gold)}
+    .nav-cta{padding:10px 22px!important;font-size:.76rem!important}
+
+    /* HERO */
+    #hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .hero-bg{position:absolute;inset:0}
+    .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
+    .hero-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,.25) 0%,rgba(8,8,8,.55) 45%,rgba(8,8,8,.9) 100%)}
+    .hero-c{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:920px}
+    .hero-badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:7px 20px;margin-bottom:30px}
+    #hero h1{font-size:clamp(2.8rem,6vw,5.5rem);font-weight:400;color:#fff;margin-bottom:22px}
+    #hero h1 em{color:var(--gold);display:block}
+    .hero-sub{font-size:1.05rem;color:rgba(255,255,255,.72);max-width:580px;margin:0 auto 14px}
+    .hero-tag{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:1.05rem;margin-bottom:38px;letter-spacing:.06em}
+    .hero-btns{display:flex;gap:14px;justify-content:center}
+    .scroll-ind{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2}
+    .scroll-ind span{display:block;width:1px;height:56px;background:linear-gradient(to bottom,var(--gold),transparent);animation:si 2s ease-in-out infinite}
+    @keyframes si{0%{transform:scaleY(0);transform-origin:top;opacity:0}50%{transform:scaleY(1);transform-origin:top;opacity:1}100%{transform:scaleY(0);transform-origin:bottom;opacity:0}}
+
+    /* METRICS */
+    #metrics{background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:56px 40px}
+    .metrics-g{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+    .metric{text-align:center;padding:0 20px;border-right:1px solid var(--border)}
+    .metric:last-child{border-right:none}
+    .m-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:600;color:var(--gold);line-height:1;margin-bottom:10px}
+    .m-lbl{font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+    /* CONCEPT */
+    #concepto{padding:116px 40px;background:var(--dark)}
+    .concept-g{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .concept-l h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:400;margin-bottom:22px}
+    .body-txt{font-size:.92rem;color:rgba(255,255,255,.62);line-height:1.85;margin-bottom:16px}
+    .pillars{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+    .pillar{padding:18px;border:1px solid var(--border);background:var(--card);transition:border-color .3s}
+    .pillar:hover{border-color:var(--gold)}
+    .pillar-ico{font-size:1.3rem;margin-bottom:8px}
+    .pillar h4{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--gold);margin-bottom:4px}
+    .pillar p{font-size:.76rem;color:var(--muted);line-height:1.5}
+    .concept-r{position:relative}
+    .concept-r img{width:100%;aspect-ratio:4/5;object-fit:cover}
+    .concept-tag{position:absolute;bottom:22px;left:-18px;background:var(--gold);color:#000;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:9px 18px}
+
+    /* ETAPA 1 */
+    #etapa1{background:var(--dark2);padding:116px 40px}
+    .e1-in{max-width:1060px;margin:0 auto;text-align:center}
+    .badge-pulse{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--gold);color:var(--gold);font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:8px 20px;margin-bottom:36px}
+    .pdot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pd 2s ease-in-out infinite}
+    @keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.65)}}
+    #etapa1 h2{font-size:clamp(2rem,3vw,2.8rem);font-weight:400;margin-bottom:14px}
+    #etapa1 .sub{color:var(--muted);font-size:.9rem;margin-bottom:56px}
+    .cards-p{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:1px}
+    .card-p{background:var(--dark3);padding:48px 28px;text-align:center;border-top:2px solid var(--gold)}
+    .card-p .n{font-family:'Playfair Display',serif;font-size:3.4rem;font-weight:600;color:var(--gold);line-height:1;margin-bottom:10px}
+    .card-p .l{font-size:.76rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .cards-s{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+    .card-s{background:var(--card);padding:28px;text-align:center}
+    .card-s .n{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);margin-bottom:8px}
+    .card-s .l{font-size:.75rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+
+    /* VIDEO SCROLL */
+    #vs{position:relative;height:350vh}
+    .vs-sticky{position:sticky;top:0;height:100vh;overflow:hidden}
+    #sv{width:100%;height:100%;object-fit:cover;display:block}
+    .vs-ov{position:absolute;inset:0;background:rgba(8,8,8,.15);pointer-events:none}
+    .vs-txt{position:absolute;bottom:72px;left:50%;transform:translateX(-50%);text-align:center;z-index:2;pointer-events:none}
+    .vs-txt p{font-family:'Playfair Display',serif;font-style:italic;font-size:1.25rem;color:rgba(255,255,255,.85);white-space:nowrap}
+
+    /* MARKET */
+    #mercado{padding:116px 40px;background:var(--dark)}
+    .m-g{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .big-n{font-family:'Playfair Display',serif;font-size:clamp(4rem,8vw,7rem);font-weight:700;color:var(--gold);line-height:.9;margin-bottom:14px}
+    .cagr{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gold);margin-bottom:18px}
+    .r-col h2{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:400;margin-bottom:28px}
+    .mstats{list-style:none}
+    .mstats li{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.86rem;color:rgba(255,255,255,.6)}
+    .mstats li .sn{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--gold);font-weight:600}
+
+    /* WELLNESS */
+    #wellness{background:var(--dark2);padding:116px 40px}
+    .w-in{max-width:1060px;margin:0 auto}
+    .w-hd{text-align:center;margin-bottom:64px}
+    .w-hd h2{font-size:clamp(2rem,3.5vw,3rem);font-weight:400}
+    .w-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+    .w-card{background:var(--dark3);padding:44px 32px;transition:transform .3s,border-color .3s;border:1px solid transparent}
+    .w-card:hover{transform:translateY(-4px);border-color:var(--gold);background:var(--card)}
+    .w-ico{font-size:1.9rem;margin-bottom:18px}
+    .w-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;margin-bottom:10px}
+    .w-card p{font-size:.83rem;color:var(--muted);line-height:1.7}
+
+    /* TESTIMONIALS */
+    #testimonios{background:var(--dark);padding:116px 0;overflow:hidden}
+    .t-hd{text-align:center;padding:0 40px;margin-bottom:56px}
+    .t-hd h2{font-size:clamp(2rem,3.5vw,2.8rem);font-weight:400;margin-bottom:14px}
+    .airbnb-b{display:inline-flex;align-items:center;gap:8px;background:rgba(255,90,96,.08);border:1px solid rgba(255,90,96,.28);color:#FF5A60;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;margin-top:12px}
+    .car-wrap{position:relative}
+    .car-wrap::before,.car-wrap::after{content:'';position:absolute;top:0;bottom:0;width:110px;z-index:2;pointer-events:none}
+    .car-wrap::before{left:0;background:linear-gradient(to right,var(--dark),transparent)}
+    .car-wrap::after{right:0;background:linear-gradient(to left,var(--dark),transparent)}
+    .car-cont{overflow:hidden;padding:16px 0}
+    .car-track{display:flex;gap:22px;transition:transform .45s cubic-bezier(.4,0,.2,1);padding:0 40px}
+    .rev-card{flex:0 0 340px;background:var(--card);border:1px solid rgba(255,255,255,.07);padding:30px 26px;transition:border-color .3s}
+    .rev-card:hover{border-color:var(--border)}
+    .rev-stars{display:flex;gap:3px;margin-bottom:14px;color:var(--gold);font-size:.88rem}
+    .rev-txt{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:rgba(255,255,255,.72);line-height:1.7;margin-bottom:22px}
+    .rev-auth{display:flex;align-items:center;gap:11px}
+    .rev-av{width:38px;height:38px;border-radius:50%;background:var(--gold-subtle);border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:600;font-size:.8rem;color:var(--gold);flex-shrink:0}
+    .rev-name{font-size:.8rem;font-weight:600}
+    .rev-meta{font-size:.7rem;color:var(--muted);margin-top:2px}
+    .car-ctrls{display:flex;justify-content:center;gap:12px;margin-top:36px;padding:0 40px}
+    .car-btn{width:46px;height:46px;border:1px solid var(--border);background:transparent;color:var(--text);font-size:1.1rem;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center}
+    .car-btn:hover{border-color:var(--gold);color:var(--gold)}
+    .t-foot{text-align:center;margin-top:36px;font-size:.8rem;color:var(--muted);letter-spacing:.08em;padding:0 40px}
+
+    /* INVESTMENT */
+    #inversion{background:var(--dark2);padding:116px 40px}
+    .inv-in{max-width:1060px;margin:0 auto}
+    .inv-hd{text-align:center;margin-bottom:16px}
+    .inv-hd h2{font-size:clamp(2.2rem,3.5vw,3rem);font-weight:400}
+    .inv-sub{text-align:center;color:var(--muted);font-size:.88rem;margin-bottom:56px;max-width:580px;margin-left:auto;margin-right:auto}
+    .inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--gold);margin-bottom:1px}
+    .inv-card{background:var(--dark3);padding:52px 44px}
+    .inv-num{font-family:'Playfair Display',serif;font-size:.68rem;font-weight:600;letter-spacing:.2em;color:var(--gold);margin-bottom:6px}
+    .inv-type{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+    .inv-card h3{font-family:'Playfair Display',serif;font-size:1.65rem;margin-bottom:26px}
+    .inv-card ul{list-style:none;margin-bottom:28px}
+    .inv-card ul li{font-size:.86rem;color:rgba(255,255,255,.67);padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:flex-start;gap:10px}
+    .inv-card ul li::before{content:'—';color:var(--gold);flex-shrink:0}
+    .inv-q{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:.98rem}
+    .inv-bar{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border:1px solid var(--border)}
+    .inv-bi{padding:22px;text-align:center;border-right:1px solid var(--border)}
+    .inv-bi:last-child{border-right:none}
+    .inv-bi .v{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--gold);font-weight:600;margin-bottom:4px}
+    .inv-bi .lb{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+
+    /* TIMELINE */
+    #timeline{background:var(--dark);padding:116px 40px}
+    .tl-in{max-width:760px;margin:0 auto}
+    .tl-hd{text-align:center;margin-bottom:76px}
+    .tl-hd h2{font-size:clamp(2rem,3.5vw,2.8rem);font-weight:400}
+    .tl-track{position:relative;padding-left:56px}
+    .tl-line{position:absolute;left:18px;top:6px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),transparent)}
+    .tl-item{position:relative;margin-bottom:52px}
+    .tl-item:last-child{margin-bottom:0}
+    .tl-dot{position:absolute;left:-44px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(201,168,76,.14)}
+    .tl-ph{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+    .tl-item h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;margin-bottom:8px}
+    .tl-item p{font-size:.86rem;color:var(--muted);line-height:1.7}
+
+    /* REGENERATIVE */
+    #regen{background:var(--dark2);padding:116px 40px}
+    .regen-in{max-width:1060px;margin:0 auto}
+    .regen-hd{text-align:center;max-width:780px;margin:0 auto 64px}
+    .regen-hd h2{font-size:clamp(2rem,3.5vw,2.8rem);font-weight:400;margin-bottom:18px}
+    .regen-hd p{font-size:.92rem;color:rgba(255,255,255,.62);line-height:1.85;margin-bottom:14px}
+    .regen-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:44px 0}
+    .regen-ph{aspect-ratio:1;overflow:hidden;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;text-align:center;padding:20px}
+    .regen-ph .ico{font-size:2rem}
+    .regen-ph p{font-size:.72rem;color:var(--muted);line-height:1.5}
+    .regen-qt{text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;color:rgba(255,255,255,.72);max-width:680px;margin:0 auto;line-height:1.75}
+    .regen-qt::before{content:'\201C';color:var(--gold);font-size:1.5rem;margin-right:4px}
+    .regen-qt::after{content:'\201D';color:var(--gold);font-size:1.5rem;margin-left:4px}
+
+    /* CEO */
+    #ceo{background:var(--dark);padding:116px 40px}
+    .ceo-in{max-width:960px;margin:0 auto;display:grid;grid-template-columns:300px 1fr;gap:76px;align-items:start}
+    .ceo-ph{width:100%;aspect-ratio:3/4;background:var(--card);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted)}
+    .ceo-ph .ico{font-size:3rem}
+    .ceo-ph p{font-size:.78rem}
+    .ceo-plate{background:var(--gold);padding:15px 18px;text-align:center}
+    .ceo-plate .nm{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:#000;margin-bottom:2px}
+    .ceo-plate .ti{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,0,0,.6)}
+    .ceo-q{font-family:'Playfair Display',serif;font-style:italic;font-size:1.55rem;font-weight:400;line-height:1.4;margin-bottom:26px}
+    .ceo-bio{font-size:.88rem;color:rgba(255,255,255,.58);line-height:1.85;margin-bottom:14px}
+    .ceo-creds{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
+    .cred{padding:18px;border:1px solid var(--border)}
+    .cred-t{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+    .cred-d{font-size:.8rem;color:rgba(255,255,255,.5);line-height:1.5}
+
+    /* FINAL CTA */
+    #cta{background:var(--dark2);padding:136px 40px;text-align:center}
+    .cta-in{max-width:680px;margin:0 auto}
+    #cta h2{font-size:clamp(2.8rem,5vw,4.5rem);font-weight:400;margin-bottom:18px;line-height:1.1}
+    #cta h2 em{color:var(--gold)}
+    .cta-sub{font-size:.95rem;color:rgba(255,255,255,.5);margin-bottom:46px;line-height:1.75}
+    .cta-btns{display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:56px}
+    .cta-info{display:flex;justify-content:center;gap:44px}
+    .cta-info-i{text-align:center}
+    .cta-info-i .ico{margin-bottom:6px}
+    .cta-info-i a,.cta-info-i span{font-size:.8rem;color:rgba(255,255,255,.5)}
+    .cta-info-i a{color:var(--gold)}
+    .disclaimer{margin-top:44px;font-size:.7rem;color:var(--dim);line-height:1.6;max-width:580px;margin-left:auto;margin-right:auto}
+
+    /* WHATSAPP */
+    #wa{background:var(--dark3);padding:64px 40px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center}
+    .wa-in{max-width:560px;margin:0 auto}
+    .wa-ico{font-size:2.4rem;margin-bottom:14px}
+    .wa-in h3{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:400;margin-bottom:10px}
+    .wa-in p{font-size:.86rem;color:var(--muted);margin-bottom:26px;line-height:1.6}
+    .btn-wa{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-family:'Inter',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;padding:14px 32px;transition:all .3s}
+    .btn-wa:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.28)}
+
+    /* FOOTER */
+    footer{background:#040404;padding:56px 40px 36px;border-top:1px solid var(--border)}
+    .ft-in{max-width:1160px;margin:0 auto}
+    .ft-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.05)}
+    .ft-logo img{height:42px;filter:brightness(0) invert(1);opacity:.65}
+    .ft-links{display:flex;gap:28px}
+    .ft-links a{color:var(--muted);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
+    .ft-links a:hover{color:var(--gold)}
+    .ft-bot{display:flex;justify-content:space-between;align-items:center}
+    .ft-copy,.ft-legal{font-size:.72rem;color:var(--dim)}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      #nav{padding:14px 20px}
+      .nav-links{display:none}
+      .concept-g,.m-g,.ceo-in,.inv-grid{grid-template-columns:1fr;gap:36px}
+      .metrics-g,.cards-p,.cards-s,.w-grid{grid-template-columns:1fr 1fr}
+      .inv-bar{grid-template-columns:1fr 1fr}
+      #hero h1{font-size:2.3rem}
+      .hero-btns{flex-direction:column;align-items:center}
+      .concept-tag{left:0}
+      .concept-r img{aspect-ratio:3/2}
+      .regen-photos{grid-template-columns:1fr 1fr}
+      .cta-info{flex-direction:column;gap:22px}
+      .ft-top{flex-direction:column;gap:22px;text-align:center}
+      .ft-bot{flex-direction:column;gap:10px;text-align:center}
+      #concepto,#etapa1,#mercado,#wellness,#inversion,#timeline,#regen,#ceo,#cta,#wa{padding:80px 20px}
+      #testimonios{padding:80px 0}
+      .t-hd,.t-foot,.car-ctrls{padding-left:20px;padding-right:20px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-in">
+    <div class="nav-logo"><img src="assets/LOGO2.png" alt="Bike &amp; Bed Arenal"></div>
+    <div class="nav-links">
+      <a href="#concepto">Concepto</a>
+      <a href="#etapa1">Resultados</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#inversion">Invertir</a>
+    </div>
+    <a href="https://calendly.com/puromtb/bikeandbed" class="btn btn-gold nav-cta" target="_blank" rel="noopener">Agendar Llamada</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <img src="assets/terreno1.jpeg" alt="Bike &amp; Bed Arenal con vista al Volcán Arenal">
+    <div class="hero-ov"></div>
+  </div>
+  <div class="hero-c">
+    <div class="hero-badge r">Etapa 2 · Ronda Limitada · Solo 20 Cupos</div>
+    <h1 class="r d1">Invierte en el Resort<br><em>Ciclista de Latinoamérica</em></h1>
+    <p class="hero-sub r d2">El primer hotel boutique de ciclismo y bienestar en La Fortuna, Costa Rica, con vista directa al Volcán Arenal. TIR proyectada 13–17%.</p>
+    <p class="hero-tag r d3"><em>Sleep · Ride · Recover · Transform</em></p>
+    <div class="hero-btns r d4">
+      <a href="https://calendly.com/puromtb/bikeandbed" class="btn btn-gold" target="_blank" rel="noopener">Agendar Llamada</a>
+      <a href="#inversion" class="btn btn-outline">Ver Inversión</a>
+    </div>
+  </div>
+  <div class="scroll-ind"><span></span></div>
+</section>
+
+
+<!-- CONCEPT -->
+<section id="concepto">
+  <div class="concept-g">
+    <div class="concept-l">
+      <span class="label r">Concepto</span>
+      <h2 class="r d1">Más que un hotel.<br><em>Un movimiento global.</em></h2>
+      <div class="gold-line r d1"></div>
+      <p class="body-txt r d2">Esta inversión combina lo mejor de dos mundos: flujo anual por operación hotelera y valorización de un activo inmobiliario premium en uno de los destinos turísticos más fuertes de Costa Rica. Por eso proyectamos un ROI real de doble dígito y una TIR atractiva de 13% a 17% en los escenarios de mayor desempeño.</p>
+      <p class="body-txt r d2">No vendemos solo habitaciones. Creamos un ecosistema de hospedaje, wellness, ciclismo, gastronomía y experiencias. Esa diversificación es lo que nos permite aspirar a una rentabilidad superior a un hotel tradicional.</p>
+      <div class="pillars r d3">
+        <div class="pillar"><div class="pillar-ico">🚴</div><h4>Bike Center</h4><p>Rutas world-class, taller especializado y bike-fit profesional.</p></div>
+        <div class="pillar"><div class="pillar-ico">🌿</div><h4>Wellness Hub</h4><p>Hidrotermia, biohacking, sauna social y recuperación activa.</p></div>
+        <div class="pillar"><div class="pillar-ico">🍃</div><h4>Farm-to-Table</h4><p>Gastronomía local sostenible, energía real para el deportista.</p></div>
+        <div class="pillar"><div class="pillar-ico">🌋</div><h4>Destino Único</h4><p>Vista al Volcán Arenal — el destino #1 de Costa Rica.</p></div>
+      </div>
+    </div>
+    <div class="concept-r r d2">
+      <img src="assets/etapa%202%20bike%20and%20bed.png" alt="Render Bike &amp; Bed Arenal Etapa 2">
+      <div class="concept-tag">La Fortuna, Costa Rica</div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 1 VALIDATED -->
+<section id="etapa1">
+  <div class="e1-in">
+    <div class="badge-pulse r"><span class="pdot"></span>Modelo Validado · Etapa 1 en Operación</div>
+    <h2 class="r d1">Los números hablan.<br>La Etapa 1 ya opera.</h2>
+    <p class="sub r d2">Resultados reales. La prueba está en los datos.</p>
+    <div class="cards-p">
+      <div class="card-p r"><div class="n">82%</div><div class="l">Ocupación Promedio</div></div>
+      <div class="card-p r d1"><div class="n">200+</div><div class="l">Reseñas 5 Estrellas</div></div>
+      <div class="card-p r d2"><div class="n">90%</div><div class="l">Ocupación Dic 2025</div></div>
+    </div>
+    <div class="cards-s">
+      <div class="card-s r d1"><div class="n">20%+</div><div class="l">ROI Proyectado</div></div>
+      <div class="card-s r d2"><div class="n">US$200</div><div class="l">ADR / Noche</div></div>
+      <div class="card-s r d3"><div class="n">7 meses</div><div class="l">Construcción</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO SCROLL (Apple style) -->
+<div id="vs">
+  <div class="vs-sticky">
+    <video id="sv" src="assets/videokling.mp4" muted playsinline preload="auto"></video>
+    <div class="vs-ov"></div>
+    <div class="vs-txt"><p>Donde la rentabilidad se une con propósito</p></div>
+  </div>
+</div>
+
+<!-- MARKET -->
+<section id="mercado">
+  <div class="m-g">
+    <div class="r">
+      <div class="big-n">$2.09T</div>
+      <div class="cagr">CAGR 16.4%</div>
+      <p style="font-size:.88rem;color:var(--muted)">Mercado global de turismo deportivo proyectado para 2032</p>
+    </div>
+    <div class="r-col">
+      <span class="label r">Mercado</span>
+      <h2 class="r d1">La ola más grande<br><em>del turismo global.</em></h2>
+      <div class="gold-line r d1"></div>
+      <ul class="mstats">
+        <li class="r d2"><span>Turismo deportivo global (2024)</span><span class="sn">$560B</span></li>
+        <li class="r d2"><span>Mercado wellness global</span><span class="sn">$5.6T</span></li>
+        <li class="r d3"><span>Costa Rica: turistas anuales</span><span class="sn">3.4M+</span></li>
+        <li class="r d3"><span>Arenal: destino #1 CR</span><span class="sn">2.1M visitas/año</span></li>
+        <li class="r d4"><span>Ciclismo en Latam (2020–2025)</span><span class="sn">+34%</span></li>
+        <li class="r d4"><span>ADR hoteles boutique premium CR</span><span class="sn">US$250–400/noche</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WELLNESS HUB -->
+<section id="wellness">
+  <div class="w-in">
+    <div class="w-hd">
+      <span class="label r">Experiencias</span>
+      <h2 class="r d1">El Wellness Hub<br><em>más completo de la región.</em></h2>
+      <div class="gold-line c r d1"></div>
+    </div>
+    <div class="w-grid">
+      <div class="w-card r"><div class="w-ico">🛏️</div><h3>Sleep Retreat Zone</h3><p>Habitaciones diseñadas para la recuperación óptima del atleta. Blackout total, temperatura controlada y colchones premium.</p></div>
+      <div class="w-card r d1"><div class="w-ico">💧</div><h3>Hydrothermal Hub</h3><p>Circuito de aguas con jacuzzi volcánico, piscina fría y ducha de contraste. Recuperación activa post-trail.</p></div>
+      <div class="w-card r d2"><div class="w-ico">⚡</div><h3>Biohacking Lab</h3><p>Red light therapy, crioterapia localizada y protocolos de recuperación avanzados para maximizar performance.</p></div>
+      <div class="w-card r d1"><div class="w-ico">🍽️</div><h3>Restaurante Saludable</h3><p>Nutrición de alto rendimiento con ingredientes locales de temporada. Menús diseñados para el ciclista moderno.</p></div>
+      <div class="w-card r d2"><div class="w-ico">🔥</div><h3>Sauna Social Nights</h3><p>Ritual de sauna con vistas al volcán. El espacio donde los ciclistas se conectan, recuperan y comparten experiencias.</p></div>
+      <div class="w-card r d3"><div class="w-ico">🌱</div><h3>Sostenibilidad</h3><p>Energía solar, gestión de agua responsable y arquitectura biofílica integrada al paisaje natural del Arenal.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonios">
+  <div class="t-hd">
+    <span class="label r">Huéspedes</span>
+    <h2 class="r d1">Lo que dicen quienes<br><em>ya lo vivieron.</em></h2>
+    <div class="gold-line c r d1"></div>
+    <div class="airbnb-b r d2">&#9733; Airbnb &middot; Verificado &middot; 5.0</div>
+  </div>
+  <div class="car-wrap">
+    <div class="car-cont" id="carCont">
+      <div class="car-track" id="carTrack"></div>
+    </div>
+  </div>
+  <div class="car-ctrls">
+    <button class="car-btn" id="prevBtn" aria-label="Anterior">&#8592;</button>
+    <button class="car-btn" id="nextBtn" aria-label="Siguiente">&#8594;</button>
+  </div>
+  <p class="t-foot">M&aacute;s de 200 rese&ntilde;as verificadas &#9733; 5.0</p>
+</section>
+
+<!-- INVESTMENT MODALITIES -->
+<section id="inversion">
+  <div class="inv-in">
+    <div class="inv-hd">
+      <span class="label r">Inversi&oacute;n</span>
+      <h2 class="r d1">Tu camino<br><em>hacia el retorno.</em></h2>
+    </div>
+    <p class="inv-sub r d2">Solo 20 espacios disponibles para inversionistas de Etapa 2. Acceso limitado para garantizar estructura y rendimiento &oacute;ptimos.</p>
+    <div class="inv-grid r d3">
+      <div class="inv-card">
+        <div class="inv-num">01</div>
+        <div class="inv-type">Capital Directo</div>
+        <h3>Inversi&oacute;n Accionaria</h3>
+        <ul>
+          <li>Participaci&oacute;n accionaria proporcional a tu inversi&oacute;n</li>
+          <li>Dividendos anuales basados en utilidades reales de operaci&oacute;n</li>
+          <li>Valorizaci&oacute;n del activo f&iacute;sico (tierra + infraestructura)</li>
+          <li>Rentabilidad proyectada 12&ndash;15% anual</li>
+          <li>Ticket m&iacute;nimo: US$50,000</li>
+          <li>Estructura legal en Costa Rica bajo PuroMTB Promotores S.A.</li>
+        </ul>
+        <p class="inv-q">&ldquo;Tu inversi&oacute;n, en legado.&rdquo;</p>
+      </div>
+      <div class="inv-card">
+        <div class="inv-num">02</div>
+        <div class="inv-type">Join Venture</div>
+        <h3>Tierra + Capital</h3>
+        <ul>
+          <li>Aporte de terreno y/o capital en combinaci&oacute;n estrat&eacute;gica</li>
+          <li>Bike &amp; Bed aporta marca, know-how y operaci&oacute;n completa</li>
+          <li>Comunidad global de ciclistas como canal de distribuci&oacute;n</li>
+          <li>Modelo win-win replicable a nivel internacional</li>
+          <li>Acceso a red de expansi&oacute;n de 100+ destinos para 2030</li>
+          <li>Participaci&oacute;n en el movimiento global desde la base</li>
+        </ul>
+        <p class="inv-q">&ldquo;Tu terreno se convierte en flujo.&rdquo;</p>
+      </div>
+    </div>
+    <div class="inv-bar r d4">
+      <div class="inv-bi"><div class="v">US$50k</div><div class="lb">Ticket M&iacute;nimo</div></div>
+      <div class="inv-bi"><div class="v">Solo 20</div><div class="lb">Cupos Disponibles</div></div>
+      <div class="inv-bi"><div class="v">Etapa 1</div><div class="lb">Modelo Validado</div></div>
+      <div class="inv-bi"><div class="v">CR S.A.</div><div class="lb">Estructura Legal</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="tl-in">
+    <div class="tl-hd">
+      <span class="label r" style="text-align:center">Hoja de Ruta</span>
+      <h2 class="r d1">El camino hacia<br><em>los 50 keys.</em></h2>
+      <div class="gold-line c r d1"></div>
+    </div>
+    <div class="tl-track">
+      <div class="tl-line"></div>
+      <div class="tl-item r">
+        <div class="tl-dot"></div>
+        <div class="tl-ph">Fase 1 &middot; Q1&ndash;Q2 2026</div>
+        <h3>Dise&ntilde;o &amp; Estructura</h3>
+        <p>Arquitectura, permisos, ingenier&iacute;a y planificaci&oacute;n financiera. Cierre de ronda de inversi&oacute;n Etapa 2.</p>
+      </div>
+      <div class="tl-item r d1">
+        <div class="tl-dot"></div>
+        <div class="tl-ph">Fase 2 &middot; Q3 2026 &mdash; Q4 2027</div>
+        <h3>Construcci&oacute;n 25 Keys</h3>
+        <p>25 habitaciones premium, Wellness Hub completo, Bike Center de nivel mundial y Farm-to-Table Kitchen.</p>
+      </div>
+      <div class="tl-item r d2">
+        <div class="tl-dot"></div>
+        <div class="tl-ph">Fase 3 &middot; 2028+</div>
+        <h3>Expansi&oacute;n Global 50 Keys</h3>
+        <p>Escalamiento a 50 habitaciones, membres&iacute;as globales y replicaci&oacute;n del modelo en 100+ destinos para 2030.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGENERATIVE TOURISM -->
+<section id="regen">
+  <div class="regen-in">
+    <div class="regen-hd">
+      <span class="label r" style="text-align:center">Turismo Regenerativo</span>
+      <h2 class="r d1">Turismo regenerativo<br><em>con prop&oacute;sito.</em></h2>
+      <div class="gold-line c r d1"></div>
+      <p class="r d2">Bike &amp; Bed nace para demostrar que el turismo puede ser rentable y, al mismo tiempo, transformar comunidades. A trav&eacute;s de la Fundaci&oacute;n Pedalea la Felicidad, destinaremos un 1% de las utilidades para impulsar la movilidad humana mediante bicicletas, apoyar a personas de bajos recursos y fortalecer el ciclismo en las zonas donde operen nuestros hoteles.</p>
+      <p class="r d2">En La Fortuna, ya estamos construyendo alianzas con iniciativas locales como <strong style="color:var(--gold)">Team Musmanni</strong>, equipo de ligas menores que ha formado j&oacute;venes ciclistas y ganado m&uacute;ltiples medallas. Porque para nosotros la bicicleta no es solo deporte &mdash; es salud, transporte, disciplina, comunidad y oportunidad.</p>
+    </div>
+    <div class="regen-photos r d2">
+      <div class="regen-ph"><div class="ico">&#128692;</div><p>Foto del equipo<br>Team Musmanni<br><small style="color:var(--dim)">[Agrega tu foto aqu&iacute;]</small></p></div>
+      <div class="regen-ph"><div class="ico">&#128690;</div><p>Donaci&oacute;n de bicicletas<br>en La Fortuna<br><small style="color:var(--dim)">[Agrega tu foto aqu&iacute;]</small></p></div>
+      <div class="regen-ph"><div class="ico">&#127942;</div><p>J&oacute;venes ciclistas<br>y medallas<br><small style="color:var(--dim)">[Agrega tu foto aqu&iacute;]</small></p></div>
+    </div>
+    <p class="regen-qt r d3">Invertir en Bike &amp; Bed es ser parte de un modelo donde la rentabilidad tambi&eacute;n transforma vidas.</p>
+  </div>
+</section>
+
+<!-- CEO -->
+<section id="ceo">
+  <div class="ceo-in">
+    <div class="r">
+      <img src="assets/CEO.png" alt="Tony Alvarado — CEO Bike &amp; Bed" style="width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top;display:block">
+      <div class="ceo-plate">
+        <div class="nm">Tony Alvarado</div>
+        <div class="ti">CEO &amp; Co-Fundador &middot; Bike &amp; Bed</div>
+      </div>
+    </div>
+    <div>
+      <span class="label r">El Equipo</span>
+      <p class="ceo-q r d1">&ldquo;El turismo activo es la mayor oportunidad de inversi&oacute;n en Latinoam&eacute;rica en esta d&eacute;cada. Nosotros ya lo probamos.&rdquo;</p>
+      <p class="ceo-bio r d2">Emprendedor serial con m&aacute;s de 15 a&ntilde;os en la industria del ciclismo y el turismo de aventura en Costa Rica. Fundador de PuroMTB, la comunidad de mountain bike m&aacute;s grande de Centroam&eacute;rica.</p>
+      <p class="ceo-bio r d2">Con la Etapa 1 de Bike &amp; Bed ya operando y generando retornos reales, lidera ahora la Etapa 2 &mdash; la expansi&oacute;n que convertir&aacute; La Fortuna en el destino ciclista de referencia de Latinoam&eacute;rica.</p>
+      <div class="ceo-creds r d3">
+        <div class="cred"><div class="cred-t">Trayectoria</div><div class="cred-d">15+ a&ntilde;os en turismo de aventura y ciclismo profesional en Costa Rica.</div></div>
+        <div class="cred"><div class="cred-t">Co-Fundador</div><div class="cred-d">PuroMTB &mdash; comunidad #1 de mountain bike en Centroam&eacute;rica.</div></div>
+        <div class="cred"><div class="cred-t">Estructura Legal</div><div class="cred-d">PuroMTB Promotores S.A. registrada en Costa Rica bajo normativa vigente.</div></div>
+        <div class="cred"><div class="cred-t">Visi&oacute;n Global</div><div class="cred-d">Red de 100+ destinos ciclistas para 2030 en Latam y Europa.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="cta">
+  <div class="cta-in">
+    <span class="label r" style="text-align:center">&#218;nete a la Etapa 2</span>
+    <h2 class="r d1">Solo quedan<br><em>20 cupos.</em></h2>
+    <p class="cta-sub r d2">Proyectamos un ROI real de doble d&iacute;gito y una TIR atractiva de 13% a 17% en los escenarios de mayor desempe&ntilde;o. Una inversi&oacute;n real. Un activo tangible. Un movimiento global.</p>
+    <div class="cta-btns r d3">
+      <a href="https://calendly.com/puromtb/bikeandbed" class="btn btn-gold btn-lg" target="_blank" rel="noopener">Quiero ser Socio &mdash; Agendar Llamada</a>
+      <a href="https://calendly.com/puromtb/bikeandbed" class="btn btn-outline" target="_blank" rel="noopener">Reservar mi Cupo Ahora</a>
+    </div>
+    <div class="cta-info r d4">
+      <div class="cta-info-i"><div class="ico">&#127760;</div><a href="https://bikeandbedhotels.com" target="_blank" rel="noopener">PuroMTB.com</a></div>
+      <div class="cta-info-i"><div class="ico">&#128247;</div><a href="https://instagram.com/bikeandbedarenal" target="_blank" rel="noopener">@bikeandbedarenal</a></div>
+      <div class="cta-info-i"><div class="ico">&#128205;</div><span>La Fortuna, Costa Rica</span></div>
+    </div>
+    <p class="disclaimer r">Las proyecciones de retorno son estimaciones basadas en el desempe&ntilde;o de la Etapa 1 y an&aacute;lisis de mercado. Los rendimientos pasados no garantizan resultados futuros. Inversi&oacute;n sujeta a riesgos propios del sector inmobiliario y hotelero. Consulte con su asesor financiero antes de invertir. PuroMTB Promotores S.A. &mdash; La Fortuna, Costa Rica.</p>
+  </div>
+</section>
+
+<!-- WHATSAPP -->
+<section id="wa">
+  <div class="wa-in">
+    <div class="wa-ico">&#128172;</div>
+    <h3>&#218;nete al grupo de inversores</h3>
+    <p>Recibe actualizaciones exclusivas, avances de construcci&oacute;n y acceso anticipado a informaci&oacute;n de la Etapa 2. Directamente en WhatsApp.</p>
+    <a href="https://chat.whatsapp.com/GDhzQFO7Gg85uQXpcKgoEj" class="btn-wa" target="_blank" rel="noopener">&#128172; Unirme al Grupo WhatsApp</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div class="ft-logo"><img src="assets/LOGO2.png" alt="Bike &amp; Bed"></div>
+      <div class="ft-links">
+        <a href="#concepto">Concepto</a>
+        <a href="#etapa1">Resultados</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#inversion">Invertir</a>
+        <a href="https://calendly.com/puromtb/bikeandbed" target="_blank" rel="noopener">Agendar Llamada</a>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p class="ft-copy">&copy; 2026 PuroMTB Promotores S.A. &mdash; La Fortuna, Alajuela, Costa Rica. Todos los derechos reservados.</p>
+      <p class="ft-legal">Inversi&oacute;n sujeta a riesgos. No es una oferta p&uacute;blica de valores.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// SCROLL REVEAL
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+// Hero: reveal immediately on load
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    document.querySelectorAll('#hero .r').forEach((el, i) => {
+      setTimeout(() => el.classList.add('on'), i * 160 + 200);
+    });
+  }, 100);
+});
+
+// NAV scroll effect
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('s', window.scrollY > 60);
+}, { passive: true });
+
+// VIDEO SCROLL — Apple-style scrubbing
+const vsEl = document.getElementById('vs');
+const sv = document.getElementById('sv');
+sv.addEventListener('loadedmetadata', () => {
+  const dur = sv.duration;
+  window.addEventListener('scroll', () => {
+    const top = vsEl.offsetTop;
+    const scrollable = vsEl.offsetHeight - window.innerHeight;
+    if (scrollable <= 0) return;
+    const prog = Math.max(0, Math.min(1, (window.scrollY - top) / scrollable));
+    const t = dur * prog;
+    if (Math.abs(sv.currentTime - t) > 0.033) sv.currentTime = t;
+  }, { passive: true });
+});
+sv.load();
+
+// TESTIMONIALS CAROUSEL
+const reviews = [
+  { name:'Esra', date:'Abril 2026', text:'Beautiful location and an all-around great stay. The host was incredibly responsive and easy to communicate with, which made everything smooth from check-in to check-out. Would definitely stay here again!', init:'E' },
+  { name:'Jordan', date:'Abril 2026', text:'Este lugar fue perfecto para el primer viaje de mi novia y m&iacute;o a Costa Rica. Hay una vista incre&iacute;ble del volc&aacute;n Arenal y nos sentimos seguros en todo momento. Nos proporcionaron todo lo que necesit&aacute;bamos.', init:'J' },
+  { name:'Polina', date:'Abril 2026', text:'&iexcl;Excelente estad&iacute;a! El lugar era agradable y estaba muy limpio, el propietario respond&iacute;a con rapidez y era f&aacute;cil comunicarse con &eacute;l. Todo fue sin problemas desde el check-in hasta el check-out.', init:'P' },
+  { name:'Alvin', date:'Abril 2026', text:'Es un gran lugar para hospedarse en La Fortuna. Nos sentimos muy c&oacute;modos durante nuestra estancia y Andr&eacute;s respondi&oacute; con mucha rapidez a todo lo que necesit&aacute;bamos. &iexcl;Lo recomiendo encarecidamente!', init:'A' },
+  { name:'Marco', date:'Marzo 2026', text:'Una experiencia absolutamente m&aacute;gica. Despertar con el volc&aacute;n frente a ti y luego salir a pedalear por rutas incre&iacute;bles es algo que no encontrar&aacute;s en ning&uacute;n otro lugar. El equipo de Bike &amp; Bed hace todo perfecto.', init:'M' },
+  { name:'Lucas', date:'Febrero 2026', text:'Vine por el ciclismo y me qued&eacute; enamorado del concepto completo. El jacuzzi privado, la vista al volc&aacute;n, la comida incre&iacute;ble y los trails de mundo. Ya reserv&eacute; para la pr&oacute;xima temporada con todo el equipo.', init:'L' },
+  { name:'Sarah W.', date:'Enero 2026', text:'The property exceeded every expectation. The combination of luxury accommodation, world-class cycling trails, and wellness amenities is unlike anything I\'ve experienced in Central America. Absolutely outstanding.', init:'SW' },
+  { name:'Carolina R.', date:'Diciembre 2025', text:'Trajimos a toda la familia y fue perfecto para todos. Los pap&aacute;s pudimos salir a montar bicicleta temprano mientras los ni&ntilde;os disfrutaban la piscina. Por las tardes, el jacuzzi con vista al volc&aacute;n nos reconect&oacute; a todos.', init:'CR' },
+  { name:'Thomas P.', date:'Noviembre 2025', text:"I've stayed at cycling hotels across Europe and none compare to this. The setting with Arenal Volcano is breathtaking, the trail network is exceptional, and the service is top-tier. This is the future of sports tourism.", init:'TP' },
+  { name:'Ignacio G.', date:'Octubre 2025', text:'La vista al amanecer al volc&aacute;n es una experiencia que te cambia. La combinaci&oacute;n de aventura, naturaleza y bienestar que ofrece Bike &amp; Bed no existe en ning&uacute;n otro lugar de Latinoam&eacute;rica.', init:'IG' }
+];
+
+const track = document.getElementById('carTrack');
+const mkCard = r => `<div class="rev-card"><div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="rev-txt">${r.text}</p><div class="rev-auth"><div class="rev-av">${r.init}</div><div><div class="rev-name">${r.name}</div><div class="rev-meta">${r.date} &middot; Airbnb</div></div></div></div>`;
+track.innerHTML = reviews.map(mkCard).join('') + reviews.map(mkCard).join('');
+
+let idx = 0;
+const cw = 362; // card width 340 + gap 22
+
+function slide(dir) {
+  idx += dir;
+  if (idx < 0) idx = reviews.length - 1;
+  if (idx >= reviews.length) idx = 0;
+  track.style.transform = `translateX(-${idx * cw}px)`;
+}
+
+document.getElementById('prevBtn').addEventListener('click', () => slide(-1));
+document.getElementById('nextBtn').addEventListener('click', () => slide(1));
+
+let auto = setInterval(() => slide(1), 4200);
+const cc = document.getElementById('carCont');
+cc.addEventListener('mouseenter', () => clearInterval(auto));
+cc.addEventListener('mouseleave', () => { auto = setInterval(() => slide(1), 4200); });
+</script>
+</body>
+</html>
